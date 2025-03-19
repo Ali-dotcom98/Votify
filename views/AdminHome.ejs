@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/output.css">
+    
+</head>
+<body id="HomeBody">
+    <main class="font-Popins mt-2">
+        <div class="flex flex-row items-center justify-between mx-4">
+            <div class="text-2xl text-gray-900">
+                Admin Dashboard
+            </div>
+            <a href="/Admin/AddCandidate" class="border border-gray-300 rounded-xl hover:bg-gray-900 hover:text-white transition ease-in duration-200 " >
+                <div class="flex flex-row items-center justify-center text-lg font-bold gap-4 px-5 py-3">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+
+                    <p>Candidate</p>
+                </div>
+            </a>
+        </div>
+        
+        <!-- table -->
+        
+        <% if (data.length>0) { %>
+
+            <div class="relative overflow-x-auto mx-4 mt-4">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border border-gray-500">
+                    <thead class="text-xs text-white uppercase  bg-gray-900 dark:text-white">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Party
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Age
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Email
+                            </th>
+                            <th scope="col" class=" py-3">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="font-Popins">
+                        <% for( let index = 0; index < data.length; index++ ) { %>
+                            
+                            <tr class="  bg-white text-black border-b border-gray-500 text-lg">
+                                <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap ">
+                                    <%- data[index].Name %>
+                                </th>
+                                <td class="px-6 py-4">
+                                    <%- data[index].Party %>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <%- data[index].Age %>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <%- data[index].Email %>
+                                </td>
+                                <td class="py-4">
+                                    <div class="flex flex-row gap-2 w-fit">
+                                        
+                                        <!-- detail -->
+            
+                                        <a href="/Admin/Candidate/View/<%-  data[index]._id  %>">
+                                            <div class="bg-blue-500 p-2 rounded-md text-white w-fit  border-2 border-blue-600">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                                </svg>
+                                            </div>
+                                        </a>
+                                        <a href="/Admin/Candidate/Update/<%-  data[index]._id  %>">
+                                            <div class="bg-yellow-500 p-2 rounded-md text-black w-fit  border-2 border-yellow-600">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                                                </svg>
+                                            </div>
+                                        </a>
+                                        <a href="/Admin/Candidate/Delete/<%- data[index].id %>">
+                                            <div class="bg-red-500 p-2 rounded-md text-white w-fit border-2 border-red-600">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M22 10.5h-6m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM4 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 10.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+                                                </svg>
+                                            </div>  
+                                        </a>
+                                
+                                        
+                                        
+                                    </div>
+                                </td>
+                            </tr>
+            
+                        <% } %>
+                        
+                    </tbody>
+            
+                </table>
+            </div>
+            
+
+        <% } else { %>
+
+            <%- include("./Partial/notfound") %>
+
+        <% } %>
+
+
+    </main>
+</body>
+</html>

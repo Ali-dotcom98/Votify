@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/src/output.css">
+</head>
+
+<body>
+    <div class="top-0">
+        <%- include("../Partial/Header.ejs") %>
+    </div>
+
+    <!-- For larger devices (md and up) -->
+    <div class="grid grid-cols-1 md:grid-cols-5">
+        <div class="col-span-0 md:col-span-1 b">
+            <%- include("../Partial/Slider.ejs") %>
+        </div>
+
+        <div class="col-span-1 min-h-screen md:col-span-4 border-2 border-gray-600 md:h-fit">
+            <%- body %>
+        </div>
+    </div>
+
+</body>
+
+</html>

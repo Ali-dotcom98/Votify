@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="src/output.css">
+</head>
+
+<body class="font-Popins">
+    <div class=" mx-4 mt-4 flex flex-row items-center justify-between mb-5 ">
+        <div class="text-2xl font-bold text-gray-900">
+            Parties OverView
+        </div>
+        <div>
+            <a href="/home" class="font-Popins">
+                <div class="  font-Popins border border-gray-300 p-2 rounded-xl hover:bg-gray-900 hover:text-white transition ease-in duration-200  flex flex-row gap-2 w-fit
+            font-semibold uppercase">
+                    <svg class="w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                    </svg>
+                    <h1 class="">Back</h1>
+                </div>
+            </a>
+        </div>
+
+
+    </div>
+    <main class="mt-2 mb-4">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 font-Poppins mx-2">
+            <% if (Parties && Parties.length> 0) { %>
+                <% Parties.forEach((party, index)=> { %>
+                    <div
+                        class="p-[1px] flex flex-col border border-gray-200  hover: bg-gradient-to-br hover:from-white   hover:to-green-400 group rounded-md">
+                        <div
+                            class="rounded-md flex flex-col items-center  group-hover: bg-gradient-to-br group-hover:from-white  group-hover:to-green-200 p-5">
+                            <a href="/Vote/PartyMember/<%- party.Party %>">
+                                <p class="text-green-500 font-Poppins font-bold">Party :- <%- index + 1 %></p>
+                                <div class="flex flex-col gap-3 mt-5">
+                                    <h2 class="text-lg md:text-xl font-semibold text-center"><%- party.FullName %></h2>
+                                    <h3
+                                        class="text-sm md:text-lg font-semibold text-center text-red-600 tracking-widest">
+                                        <%- party.Party %></h3>
+                                    <div
+                                        class="flex flex-row items-center justify-between bg-gray-100 rounded-md p-4 mt-auto">
+                                        <p>Founder: <br><span class="font-bold"><%- party.Founder %></span></p>
+                                        <p>Founded: <br><span class="font-bold"><%- party.Founded %></span></p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                    <% }); %>
+                        <% } else { %>
+                            <h1 class="text-center text-red-500 font-bold mt-10">No posts exist</h1>
+                            <% } %>
+
+
+</body>
+
+</html>

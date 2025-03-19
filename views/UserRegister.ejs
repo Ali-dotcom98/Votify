@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="src/output.css">
+
+</head>
+
+<body>
+
+    <div class=" mx-3 mt-4 flex flex-row items-center justify-between mb-5 ">
+        <div class="text-2xl text-gray-900 ">
+            Add Customer
+        </div>
+        <div>
+            <a href="/home" class="font-Popins">
+                <div class="  font-Popins border border-gray-300 p-2 rounded-xl hover:bg-gray-900 hover:text-white transition ease-in duration-200  flex flex-row gap-2 w-fit
+            font-semibold uppercase">
+                    <svg class="w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                    </svg>
+                    <h1 class="">Back</h1>
+                </div>
+            </a>
+        </div>
+
+
+    </div>
+
+    <form method="post" action="/home/UserRegister" onsubmit="return(validation())">
+        <div class="grid grid-cols-4 p-3 gap-4 mt-4">
+            <div class="col-span-2 flex flex-col gap-3">
+                <div class="flex flex-col gap-3 items-start">
+                    <label for="" class="font-Popins font-bold">Name</label>
+                    <input class="border border-gray-300 rounded-md col-span-2 w-full p-1" type="text" name="Name"
+                        id="Name" placeholder="Name">
+                    <p></p>
+                </div>
+            </div>
+            <div class="col-span-2 flex flex-col gap-3">
+                <div class="flex flex-col gap-3 items-start">
+                    <label for="" class="font-Popins font-bold">Age</label>
+                    <input class="border border-gray-300 rounded-md col-span-2 w-full p-1" type="text" name="Age"
+                        id="Age" placeholder="Age">
+                    <p></p>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="grid grid-cols-4 p-3 gap-4">
+            <div class="col-span-2 flex flex-col gap-3">
+                <div class="flex flex-col gap-3 items-start">
+                    <label for="" class="font-Popins font-bold">Telephone</label>
+                    <input class="border border-gray-300 rounded-md col-span-2 w-full p-1" type="text" name="Telephone"
+                        id="Telephone" placeholder="Telephone">
+                    <p></p>
+                </div>
+                <p></p>
+            </div>
+            <div class="col-span-2 flex flex-col gap-3">
+                <div class="flex flex-col gap-3 items-start">
+                    <label for="" class="font-Popins font-bold">Email</label>
+                    <input class="border border-gray-300 rounded-md col-span-2 w-full p-1" type="text" name="Email"
+                        id="Email" placeholder="Email">
+                    <p></p>
+                </div>
+                <p></p>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 p-3 gap-4">
+            <div class="col-span-2 flex flex-col gap-3">
+                <div class="flex flex-col gap-3 items-start">
+                    <label for="" class="font-Popins font-bold">Address</label>
+                    <input class="border border-gray-300 rounded-md col-span-2 w-full p-1" type="text" name="Address"
+                        id="Address" placeholder="Address">
+                    <p></p>
+                </div>
+                <p></p>
+            </div>
+            <div class="col-span-2 flex flex-col gap-3">
+                <div class="flex flex-col gap-3 items-start">
+                    <label for="" class="font-Popins font-bold">CNIC</label>
+                    <input class="border border-gray-300 rounded-md col-span-2 w-full p-1" type="text" name="CNIC"
+                        id="CNIC" placeholder="CNIC">
+                    <p></p>
+                </div>
+                <p></p>
+            </div>
+        </div>
+
+
+        <div class="p-4">
+            <button class="btn1 btn-white">
+                Submit
+            </button>
+        </div>
+
+    </form>
+
+</body>
+<script>
+    function validation() {
+
+        let Move = 0;
+        const Name = document.getElementById("Name");
+        const Age = document.getElementById("Age");
+        const Telephone = document.getElementById("Telephone");
+        const Email = document.getElementById("Email");
+        const Address = document.getElementById("Address");
+        const CNIC = document.getElementById("CNIC")
+
+        if (Name.value === "") {
+            const nextsibling = Name.nextElementSibling;
+            nextsibling.innerHTML = `${Name.id} is Required`
+            nextsibling.style.color = "red"
+            Object.assign(Name.style, {
+                border: "2px red solid"
+            })
+            Move--;
+
+        }
+        else {
+            const nextsibling = Name.nextElementSibling;
+            nextsibling.style.display = "none";
+            Object.assign(Name.style, {
+                border: "2px green solid"
+
+            })
+            Move++;
+        }
+
+        if (Age.value === "" || Age.value < 17) {
+            console.log("Here")
+            const nextsibling = Age.nextElementSibling;
+            console.log(nextsibling)
+            nextsibling.innerHTML = `${Age.id} is Required`
+            nextsibling.style.color = "red"
+            Object.assign(Age.style, {
+                border: "2px red solid"
+            })
+            Move--
+        }
+        else {
+            {
+                const nextsibling = Age.nextElementSibling;
+                nextsibling.style.display = "none";
+                Object.assign(Age.style, {
+                    border: "2px green solid"
+
+                })
+                Move++;
+            }
+        }
+
+        if (Address.value === "") {
+
+            const nextsibling = Address.nextElementSibling;
+
+            nextsibling.innerHTML = `${Address.id} is Required`
+            nextsibling.style.color = "red"
+            Object.assign(Address.style, {
+                border: "2px red solid"
+            })
+            Move--
+        }
+        else {
+            const nextsibling = Address.nextElementSibling;
+            nextsibling.style.display = "none";
+            Object.assign(Address.style, {
+                border: "2px green solid"
+
+            })
+            Move++
+        }
+
+
+
+        if (Email.value === "") {
+            const nextsibling = Email.nextElementSibling;
+            console.log(nextsibling)
+            nextsibling.innerHTML = `${Email.id} is Required`
+            nextsibling.style.color = "red"
+            Object.assign(Email.style, {
+                border: "2px red solid"
+            })
+        }
+        else {
+            var Regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (Regex.test(Email.value)) {
+                const nextsibling = Email.nextElementSibling;
+                nextsibling.style.display = "none";
+                Object.assign(Email.style, {
+                    border: "2px green solid"
+                })
+                Move++;
+            }
+            else {
+                const nextsibling = Email.nextElementSibling;
+                nextsibling.innerHTML = `${Email.id} Should folloew Pattren example@example.com`
+                nextsibling.style.color = "red"
+                Object.assign(Email.style, {
+                    border: "2px red solid"
+                })
+                Move--
+            }
+
+        }
+        if (Telephone.value === "") {
+            const nextsibling = Telephone.nextElementSibling;
+            console.log(nextsibling)
+            nextsibling.innerHTML = `${Telephone.id} is Required`
+            nextsibling.style.color = "red"
+            Object.assign(Telephone.style, {
+                border: "2px red solid"
+            })
+        }
+        else {
+            var Regex = /^03\d{2}[-\s]\d{7,10}$/;
+            if (Regex.test(Telephone.value)) {
+                const nextsibling = Telephone.nextElementSibling;
+                nextsibling.style.display = "none";
+                Object.assign(Telephone.style, {
+                    border: "2px green solid"
+                })
+                Move++;
+            }
+            else {
+                const nextsibling = Telephone.nextElementSibling;
+                nextsibling.innerHTML = `${Telephone.id} Should Follow Pattern 03xx-xxxxxxx / 03xx xxxxxxx`
+                nextsibling.style.color = "red"
+                Object.assign(Telephone.style, {
+                    border: "2px red solid"
+                })
+                Move--;
+            }
+
+        }
+        if (CNIC.value === "") {
+            const nextsibling = CNIC.nextElementSibling;
+            console.log(nextsibling)
+            nextsibling.innerHTML = `${CNIC.id} is Required`
+            nextsibling.style.color = "red"
+            Object.assign(CNIC.style, {
+                border: "2px red solid"
+            })
+        }
+        else {
+            const Regex = /^[0-9]{5}-[0-9]{7}-[0-9]{1}$|^[0-9]{13}$/;
+            if (Regex.test(CNIC.value)) {
+                const nextsibling = CNIC.nextElementSibling;
+                nextsibling.style.display = "none";
+                Object.assign(CNIC.style, {
+                    border: "2px green solid"
+                })
+                Move++;
+            }
+            else {
+                const nextsibling = CNIC.nextElementSibling;
+                nextsibling.innerHTML = `${CNIC.id} Should Follow Pattern xxxxx-xxxxxxx-x 11 Digit`
+                nextsibling.style.color = "red"
+                Object.assign(CNIC.style, {
+                    border: "2px red solid"
+                })
+                Move--;
+            }
+
+        }
+
+
+        console.log(Move)
+
+        if (Move == 6) {
+            document.querySelector('form').submit()
+            return true;
+        }
+        else {
+            event.preventDefault()
+            return false
+        }
+
+    }
+</script>
+
+</html>

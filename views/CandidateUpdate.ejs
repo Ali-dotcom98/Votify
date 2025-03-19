@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="src/output.css">
+
+</head>
+<body>
+    
+    <div class="flex flex-row items-center justify-between font-Popins">
+        <a href="/Admin">
+            <div class=" mx-4 mt-2 font-Popins border border-gray-300 p-2 rounded-xl hover:bg-gray-900 hover:text-white transition ease-in duration-200  flex flex-row gap-2 w-fit
+            font-semibold uppercase">
+                <svg class="w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                </svg>
+                <h1 class="">Back</h1>
+            </div>
+        </a>
+    </div>
+    
+
+
+
+
+    <div class="flex flex-row items-center justify-between mx-4 font-Popins border-b border-gray-300">
+        <div class="text-2xl text-gray-900 p-3">
+            Update <%- data.Name %>
+        </div>
+    </div>
+    <form  method="post" action="/Admin/Candidate/Update/<%- data._id %>">
+        <div class="grid grid-cols-4 p-3 gap-4 mt-4">
+            <div class="col-span-2 flex flex-col gap-3">
+                <div class="flex flex-col gap-3 items-start">
+                    <label for="" class="font-Popins font-bold">Name</label>
+                    <input class="border border-gray-300 rounded-md col-span-2 w-full p-1"  type="text" name="Name" id="Name"
+                    placeholder="Name" value="<%- data.Name %>">
+                    <p ></p>
+                </div>
+            </div>
+            <div class="col-span-2 flex flex-col gap-3">
+                <div class="flex flex-col gap-3 items-start">
+                    <label for="Party" class="font-Popins font-bold">Party</label>
+                    <select name="Party" id="Party" class="border border-gray-300 rounded-md col-span-2 w-full p-1">
+                        <option value="<%- data.Party %>"><%- data.Party %></option>
+                        <option value="MQM">MQM</option>
+                        <option value="PTI">PTI</option>
+                        <option value="PMLN">PMLN</option>
+                        <option value="JI">JI</option>
+                        <option value="PPP">PPP</option>
+                        <option value="ANP">ANP</option>
+                        <option value="SIC">SIC</option>
+                        <option value="PkMAP">PkMAP</option>
+                        <option value="NP">NP</option>
+                        <option value="BNP">BNP</option>
+                        <option value="BAP">BAP</option>
+                    </select>
+                    <p></p>
+                </div>
+                
+
+            </div>
+        </div>
+        <div class="grid grid-cols-4 p-3 gap-4 mt-4">
+            <div class="col-span-2 flex flex-col gap-3">
+                <div class="flex flex-col gap-3 items-start">
+                    <label for="" class="font-Popins font-bold">Age</label>
+                    <input class="border border-gray-300 rounded-md col-span-2 w-full p-1"  type="text" name="Age" id="Name"
+                    placeholder="Age" value="<%- data.Age %>">
+                    <p ></p>
+                </div>
+            </div>
+        </div>   
+
+
+
+
+        <div class="grid grid-cols-4 p-3 gap-4">
+            <div class="col-span-2 flex flex-col gap-3">
+                <div class="flex flex-col gap-3 items-start">
+                    <label for="" class="font-Popins font-bold">Telephone</label>
+                    <input class="border border-gray-300 rounded-md col-span-2 w-full p-1"  type="text" name="Telephone" id="Telephone"
+                    placeholder="Telephone" value="<%- data.Telephone %>" >
+                    <p></p>
+                </div>
+                <p></p>
+            </div>
+            <div class="col-span-2 flex flex-col gap-3">
+                <div class="flex flex-col gap-3 items-start">
+                    <label for="" class="font-Popins font-bold">Email</label>
+                    <input class="border border-gray-300 rounded-md col-span-2 w-full p-1"  type="text" name="Email" id="Email"
+                    placeholder="Email" value="<%- data.Email %>" >
+                    <p></p>
+                </div>
+                <p></p>
+            </div>
+        </div>
+
+        <div class="p-4">
+            <button class="btn1 btn-white">
+                Submit
+            </button>
+        </div>
+
+    </form>
+</body>
+</html>
