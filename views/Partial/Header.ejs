@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/src/output.css">
+</head>
+
+<body>
+    <div class="flex flex-row items-center justify-between p-5 bg-white font-Popins ring-2 ring-green-900 mb-2">
+        <div class="text-2xl text-black font-bold">
+            <h1>Election <span class="text-green-800">Pak</span></h1>
+        </div>
+
+        <!-- For large Screen  -->
+
+        <div class=" hidden md:flex flex-row md:gap-10 lg:gap-16 text-green-900  font-semibold relative">
+            <div class="hover:-translate-y-1 transition">
+                <a href="" class=" hover:border-black hover:border-b-2 ease-in duration-100 ">Home</a>
+            </div>
+            <div class="hover:-translate-y-1 transition">
+                <a href="" class=" hover:border-black hover:border-b-2 ease-in duration-100 ">Services</a>
+            </div>
+            <div class="hover:-translate-y-1 transition">
+                <a href="" class=" hover:border-black hover:border-b-2 ease-in duration-100 ">Product</a>
+            </div>
+            <div class="hover:-translate-y-1 transition">
+                <a href="" class=" hover:border-black hover:border-b-2 ease-in duration-100 ">Contact Us</a>
+            </div>
+
+            <a href="" class="hover:-translate-y-2 ease-linear duration-100">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>
+            </a>
+        </div>
+
+
+        <button class="p-2 md:hidden text-green-900 font-bold" onclick="Handle()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+        </button>
+
+        <!-- mobile-nav -->
+        <div class="fixed bg-white inset-0 p-3 hidden" id="Mobile">
+
+            <div class="flex justify-between items-center">
+                <a href="" class="flex gap-2 items-center ">
+                    <span class="text-lg font-medium font-display">ToDesktop</span>
+                </a>
+                <button class="p-2 md:hidden " onclick="Handle()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-6">
+                <a href="" class="font-medium m-3 p-3 hover:bg-gray-50 block rounded-lg">Pricing</a>
+                <a href="" class="font-medium m-3 p-3 hover:bg-gray-50 block rounded-lg">Docs</a>
+                <a href="" class="font-medium m-3 p-3 hover:bg-gray-50 block rounded-lg">Changing</a>
+                <a href="" class="font-medium m-3 p-3 hover:bg-gray-50 block rounded-lg">Blog</a>
+                <a href="" class="font-medium m-3 p-3 hover:bg-gray-50 block rounded-lg">Login</a>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script>
+    const data = document.getElementById("Mobile");
+    function Handle() {
+        data.classList.toggle('hidden');
+    }
+</script>
+
+</html>

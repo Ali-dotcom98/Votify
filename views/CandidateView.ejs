@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="src/output.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <a href="/Admin" class="font-Popins" >
+        <div class=" mx-4 mt-2 font-Popins border border-gray-300 p-2 rounded-xl hover:bg-gray-900 hover:text-white transition ease-in duration-200  flex flex-row gap-2 w-1/12
+        font-semibold uppercase">
+            <svg class="w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+            </svg>
+            <h1 class="">Back</h1>
+        </div>
+    </a>
+    
+    
+
+    <div>
+        <div>
+            <label for="">Name</label>
+            <p><%- data.Name %></p>
+        </div>
+        <div>
+            <label for="">Party</label>
+            <p><%- data.Party %></p>
+        </div>
+        <div>
+            <label for="">Age</label>
+            <p><%- data.Age %></p>
+        </div>
+        <div>
+            <label for="">Telephone</label>
+            <p><%- data.Telephone %></p>
+        </div>
+        <div>
+            <label for="">Email</label>
+            <p><%- data.Email %></p>
+        </div>
+        
+    </div>
+</body>
+</html>

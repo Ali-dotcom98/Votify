@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="flex flex-col gap-4 md:gap-2 px-3 pt-3 mb-3 border-b border-gray-300 mx-3 pb-5 font-Popins">
+        <h1 class="text-2xl font-bold text-gray-900">Dashboard</h1>
+        <div
+            class="grid grid-cols-2 gap-2  md:grid md:grid-cols-2 md:gap-5  lg:flex flex-row items-center justify-center lg:gap-10 ">
+            <a href="/home/UserRegister"
+                class="border border-gray-300 rounded-xl hover:bg-green-900 hover:text-white transition ease-in duration-100 ">
+                <div class="flex flex-row items-center justify-center tracking-wider font-bold gap-2 px-3 py-2">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+
+                    <p>Register</p>
+                </div>
+            </a>
+            <a href="/Vote"
+                class="border border-gray-300 rounded-xl hover:bg-green-900 hover:text-white transition ease-in duration-100 ">
+                <div class="flex flex-row items-center justify-center tracking-wider font-bold gap-2 px-3 py-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0 1 20.25 6v12A2.25 2.25 0 0 1 18 20.25H6A2.25 2.25 0 0 1 3.75 18V6A2.25 2.25 0 0 1 6 3.75h1.5m9 0h-9" />
+                    </svg>
+
+
+                    <p>Vote</p>
+                </div>
+            </a>
+            <a href="/Leaderboard"
+                class="border border-gray-300 rounded-xl hover:bg-green-900 hover:text-white transition ease-in duration-100 ">
+                <div class="flex flex-row items-center justify-center tracking-wider font-bold gap-2 px-3 py-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0" />
+                    </svg>
+
+                    <p class="capitalize">Leaderboard</p>
+                </div>
+            </a>
+            <a href="/home/UserProfile"
+                class="border border-gray-300 rounded-xl hover:bg-green-900 hover:text-white transition-all ease-in duration-100 ">
+                <div class="flex flex-row items-center justify-center tracking-wider font-bold gap-2 px-3 py-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg>
+
+                    <p>Profile</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="mx-6 my-2">
+        <% if (message!=null) { %>
+            <div class="text-xl text-red-700 font-Popins font-semibold " id="message">
+                <%- message %>
+            </div>
+            <% } %>
+                <% if (message1!=null) { %>
+                    <div class="text-xl text-green-700 font-Popins font-semibold " id="message1">
+                        <%- message1 %>
+                    </div>
+                    <% } %>
+                        <div class=" pt-3  ">
+                            <h1 class="text-xl text-gray-900 md:text-2xl font-bold">Detail of Candidates</h1>
+                            <div
+                                class="mt-5 flex flex-row items-center justify-center w-full max-w-full overflow-hidden lg:mt-1">
+                                <!-- Flex container for cards -->
+                                <div
+                                    class="flex py-10   flex-col md:flex-row gap-4 md:flex md:flex-wrap md:gap-10 items-center justify-center w-full max-w-screen-lg">
+                                    <!-- PTI Card -->
+                                    <div id="PTI"
+                                        class="size-64 flex flex-col gap-4 border border-gray-200  bg-green-200 p-5 hover:scale-105 hover:shadow-2xl hover:shadow-green-500 transition-transform duration-300 ease-out cursor-pointer rounded-xl shadow-lg shadow-gray-400 ">
+                                        <div class="cursor-pointer text-center ">
+                                            <p class="text-gray-900 font-Poppins font-bold text-2xl tracking-wide">
+                                                PTI 🟢⚪🔴🏏</p>
+                                            <div class="mt-5 relative">
+                                                <img class="mx-auto rounded-md transition-opacity duration-300 hover:opacity-90"
+                                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Flag_of_the_Pakistan_Tehreek-e-Insaf.svg/648px-Flag_of_the_Pakistan_Tehreek_e_Insaf.svg.png"
+                                                    alt="PTI Flag">
+                                                <!-- Shine effect -->
+                                                <div
+                                                    class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- PMLN Card -->
+                                    <div id="PMLN"
+                                        class="size-64 flex flex-col gap-4 border bg-green-200 border-gray-200 p-5 hover:scale-105 hover:shadow-2xl hover:shadow-green-500/30 transition-transform duration-300 ease-out cursor-pointer rounded-xl shadow-lg shadow-gray-400 ">
+                                        <div class="cursor-pointer text-center ">
+                                            <p class="text-gray-900 font-Poppins font-bold text-2xl tracking-wide">PMLN
+                                                🟢⚪🐅
+                                            </p>
+                                            <div class="mt-5 relative">
+                                                <img class="mx-auto rounded-md transition-opacity duration-300 hover:opacity-90"
+                                                    src="https://upload.wikimedia.org/wikipedia/commons/d/d9/PMLN_2021_Flag.png"
+                                                    alt="PMLN Flag">
+                                                <div
+                                                    class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- MQM Card -->
+                                    <div id="MQM"
+                                        class="size-64 flex flex-col gap-4 border bg-green-200 border-gray-200 p-5 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/30 transition-transform duration-300 ease-out cursor-pointer rounded-xl shadow-lg shadow-gray-400 ">
+                                        <div class="cursor-pointer text-center">
+                                            <p class="text-gray-900 font-Poppins font-bold text-2xl tracking-wide">MQM
+                                                🔴🟢⚪🎯</p>
+                                            <div class="mt-5 relative">
+                                                <img class="mx-auto rounded-md transition-opacity duration-300 hover:opacity-90"
+                                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Flag_of_the_Muttahida_Qaumi_Movement.svg/1280px-Flag_of_the_Muttahida_Qaumi_Movement.svg.png"
+                                                    alt="MQM Flag">
+                                                <div
+                                                    class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- PPP Card -->
+                                    <div id="PPP"
+                                        class="size-64 flex flex-col gap-4 border  border-gray-200 p-5 hover:scale-105 hover:shadow-2xl hover:shadow-black/30 transition-transform duration-300 ease-out cursor-pointer rounded-xl shadow-lg shadow-gray-400 bg-green-200">
+                                        <div class="cursor-pointer text-center">
+                                            <p class="text-gray-900 font-Poppins font-bold text-2xl tracking-wide">
+                                                PPP 🔴⚫🟢✊
+                                            </p>
+                                            <div class="mt-5 relative">
+                                                <img class="mx-auto rounded-md transition-opacity duration-300 hover:opacity-90"
+                                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkferCpxDIK0_f210M8tdqGsA8wXnM5XO5jw&s"
+                                                    alt="PPP Flag">
+                                                <div
+                                                    class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- JI Card -->
+                                    <div id="JI"
+                                        class="size-64 flex flex-col gap-4 border border-gray-200 p-5 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/30 transition-transform duration-300 ease-out cursor-pointer rounded-xl shadow-lg shadow-gray-400 bg-green-200">
+                                        <div class="cursor-pointer text-center">
+                                            <p class="text-gray-900 font-Poppins font-bold text-2xl tracking-wide">JI
+                                                🟦⚪🟩☪️
+                                            </p>
+                                            <div class="mt-5 relative">
+                                                <img class="mx-auto rounded-md transition-opacity duration-300 hover:opacity-90"
+                                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzuFVTwONgD8YxLbk71aH1nhv8-pjHvGrSWA&s"
+                                                    alt="JI Flag">
+                                                <div
+                                                    class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fixed inset-0  hidden overflow-auto" id="Content1">
+                                <div class="bg-gray-500 bg-opacity-75 min-h-screen flex items-center justify-center">
+                                    <div class="flex flex-col justify-between bg-white w-2/3 p-8 rounded-lg shadow-xl">
+                                        <h1 class="text-2xl uppercase tracking-wider font-medium text-red-500">Pakistan
+                                            Tehreek-e-Insaf</h1>
+                                        <p class="my-8 text-lg text-gray-600 text-justify">
+                                            Pakistan Tehreek-e-Insaf (PTI) is a major political party in Pakistan,
+                                            founded in 1996 by Imran Khan, a former cricketer and philanthropist. PTI
+                                            initially gained popularity by promoting anti-corruption, justice, and
+                                            economic reforms, aiming to establish a "New Pakistan" that emphasizes
+                                            transparency, meritocracy, and equal opportunity. Over the years, PTI's
+                                            message resonated with the middle class and younger population, particularly
+                                            disillusioned with the traditional political parties.
+                                            In 2018, PTI secured a landmark victory in the general elections, and Imran
+                                            Khan became the Prime Minister of Pakistan. The party has faced challenges
+                                            in governance, including economic instability and opposition criticism, but
+                                            it remains a significant force in the country's political landscape. PTI's
+                                            policies focus on improving education, healthcare, and poverty alleviation,
+                                            while maintaining a strong stance against corruption.
+                                        </p>
+                                        <button id="close1"
+                                            class="bg-red-500 text-white py-3 px-10 rounded hover:bg-red-600 transition w-fit">
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="fixed inset-0 z-10 hidden" id="Content2">
+                                <div class="bg-gray-500 bg-opacity-75 min-h-screen flex items-center justify-center">
+                                    <div class="flex flex-col justify-between bg-white w-2/3 p-8 rounded-lg shadow-xl">
+                                        <h1 class="text-2xl uppercase tracking-wider font-medium text-red-500">Pakistan
+                                            Muslim League</h1>
+                                        <p class="my-8 text-lg text-gray-600">
+                                            The Pakistan Muslim League (PML) is a political party in Pakistan with a
+                                            significant historical role in the country's formation. The party originated
+                                            in the early 20th century, playing a pivotal part in the independence
+                                            movement that led to the creation of Pakistan in 1947. Over time, the PML
+                                            has split into several factions, with the most notable ones being Pakistan
+                                            Muslim League (Nawaz) or PML-N, led by Nawaz Sharif, and Pakistan Muslim
+                                            League (Quaid-e-Azam) or PML-Q.
+                                            The PML-N has dominated Pakistan's political landscape, particularly in
+                                            Punjab, and has served multiple terms in the national government. The party
+                                            advocates for conservative policies, economic development, and maintaining
+                                            close ties with the business community. Historically, it has been a major
+                                            rival of the Pakistan People's Party (PPP) and has been involved in shaping
+                                            the country's democratic transition.
+                                        </p>
+                                        <button id="close2"
+                                            class="bg-red-500 text-white py-3 px-10 rounded hover:bg-red-600 transition w-fit">
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="fixed inset-0 z-10 hidden" id="Content3">
+                                <div class="bg-gray-500 bg-opacity-75 min-h-screen flex items-center justify-center">
+                                    <div class="flex flex-col justify-between bg-white w-2/3 p-8 rounded-lg shadow-xl">
+                                        <h1 class="text-2xl uppercase tracking-wider font-medium text-red-500">MQM</h1>
+                                        <p class="my-8 text-lg text-gray-600">
+                                            The Muttahida Qaumi Movement (MQM) is a political party in Pakistan,
+                                            primarily focused on representing the urban middle class, particularly in
+                                            Karachi. The party has been a major player in Sindh's politics, advocating
+                                            for the rights of Muhajirs, the descendants of migrants who came to Pakistan
+                                            from India during partition.
+                                        </p>
+                                        <button id="close3"
+                                            class="bg-red-500 text-white py-3 px-10 rounded hover:bg-red-600 transition w-fit">
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="fixed inset-0 z-10 hidden" id="Content4">
+                                <div class="bg-gray-500 bg-opacity-75 min-h-screen flex items-center justify-center">
+                                    <div class="flex flex-col justify-between bg-white w-2/3 p-8 rounded-lg shadow-xl">
+                                        <h1 class="text-2xl uppercase tracking-wider font-medium text-red-500">Pakistan
+                                            People's Party</h1>
+                                        <p class="my-8 text-lg text-gray-600">
+                                            The Pakistan People's Party (PPP) is one of the largest and oldest political
+                                            parties in Pakistan, founded in 1967 by Zulfikar Ali Bhutto. It is a
+                                            center-left party that promotes socialist principles, advocating for
+                                            equality, democracy, and the rights of the working class. PPP has been
+                                            instrumental in shaping Pakistan's political landscape, having been in power
+                                            multiple times. Its iconic leaders, Zulfikar Ali Bhutto and his daughter
+                                            Benazir Bhutto, both served as Prime Ministers of Pakistan. The party has a
+                                            strong support base in rural Sindh and focuses on social justice, economic
+                                            reform, and strengthening democratic institutions.
+                                        </p>
+                                        <button id="close4"
+                                            class="bg-red-500 text-white py-3 px-10 rounded hover:bg-red-600 transition w-fit">
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="fixed inset-0 z-10 hidden" id="Content5">
+                                <div class="bg-gray-500 bg-opacity-75 min-h-screen flex items-center justify-center">
+                                    <div class="flex flex-col justify-between bg-white w-2/3 p-8 rounded-lg shadow-xl">
+                                        <h1 class="text-2xl uppercase tracking-wider font-medium text-red-500">
+                                            Jamaat-e-Islami</h1>
+                                        <p class="my-8 text-lg text-gray-600">
+                                            Jamaat-e-Islami (JI) is one of Pakistan's oldest and most prominent Islamic
+                                            political parties, founded in 1941 by Maulana Abul A'la Maududi. JI
+                                            advocates for the implementation of Islamic principles in governance and
+                                            legislation, seeking to establish a state based on Sharia law. The party
+                                            emphasizes social justice, moral integrity, and the eradication of
+                                            corruption. With strong roots in conservative religious circles,
+                                            Jamaat-e-Islami has a significant presence in educational and religious
+                                            institutions. Over the years, JI has participated in both parliamentary
+                                            elections and social movements, promoting Islamic democracy and advocating
+                                            for a welfare state.
+                                        </p>
+                                        <button id="close5"
+                                            class="bg-red-500 text-white py-3 px-10 rounded hover:bg-red-600 transition w-fit">
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Event listeners for party cards
+        document.getElementById("PTI").addEventListener("click", () => {
+            console.log("Displaying PTI BLOG");
+            document.getElementById("Content1").classList.remove("hidden");
+        });
+        document.getElementById("close1").addEventListener("click", () => {
+            document.getElementById("Content1").classList.add("hidden");
+        });
+
+        document.getElementById("PMLN").addEventListener("click", () => {
+            document.getElementById("Content2").classList.remove("hidden");
+        });
+        document.getElementById("close2").addEventListener("click", () => {
+            document.getElementById("Content2").classList.add("hidden");
+        });
+
+        document.getElementById("MQM").addEventListener("click", () => {
+            document.getElementById("Content3").classList.remove("hidden");
+        });
+        document.getElementById("close3").addEventListener("click", () => {
+            document.getElementById("Content3").classList.add("hidden");
+        });
+
+        document.getElementById("PPP").addEventListener("click", () => {
+            document.getElementById("Content4").classList.remove("hidden");
+        });
+        document.getElementById("close4").addEventListener("click", () => {
+            document.getElementById("Content4").classList.add("hidden");
+        });
+
+        document.getElementById("JI").addEventListener("click", () => {
+            document.getElementById("Content5").classList.remove("hidden");
+        });
+        document.getElementById("close5").addEventListener("click", () => {
+            document.getElementById("Content5").classList.add("hidden");
+        });
+
+        // Remove message elements after 3 seconds
+        const data = document.getElementById('message');
+        if (data) {
+            setTimeout(() => {
+                data.remove();
+            }, 3000);
+        }
+
+        const data1 = document.getElementById('message1');
+        if (data1) {
+            setTimeout(() => {
+                data1.remove();
+            }, 3000);
+        }
+
+        // If you have an element with ID 'message2', uncomment the following lines
+        // const data2 = document.getElementById('message2');
+        // if (data2) {
+        //     setTimeout(() => {
+        //         data2.remove();
+        //     }, 3000);
+        // }
+    });
+</script>
+
+</html>
