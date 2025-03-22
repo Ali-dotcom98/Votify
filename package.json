@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "nodemon Operate.js -e js,ejs",
+    "start": "nodemon Operate.js -e js,ejs",
     "go": "npx tailwindcss -i ./public/src/input.css -o ./public/src/output.css --watch"
   },
   "dependencies": {
