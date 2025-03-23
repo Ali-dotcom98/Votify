@@ -1,4 +1,4 @@
-# 📌 Votify
+![MacBook Pro 16_ - 1](https://github.com/user-attachments/assets/84a40edd-6166-4ad6-81ef-5d7a1176a572)![MacBook Pro 16_ - 1](https://github.com/user-attachments/assets/88165836-30dd-4a0d-b7bc-db078a07b6ad)# 📌 Votify
 
 **Votify** is a secure, server-side rendered Node.js application designed for creating and managing polls. It allows users to create polls, vote, and view live results, all within a beautifully styled interface using Tailwind CSS.
 
@@ -46,6 +46,10 @@ npm install
 
 # Start the development server
 npm run Start
+```
+![MacBook Pro 16_ - 1](https://github.com/user-attachments/assets/84276b5c-cad8-4247-a54a-53a9221c14a6)
 
-![MacBook Pro 16_ - 1](https://github.com/user-attachments/assets/c65383b0-efd7-4df5-9264-60abb1a013c2)
+
+
+
 
