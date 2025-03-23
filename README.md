@@ -36,7 +36,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/votify.git
+git clone https://github.com/Ali-dotcom98/Votify.git
 
 # Navigate into the project folder
 cd votify
@@ -45,4 +45,7 @@ cd votify
 npm install
 
 # Start the development server
-npm run dev
+npm run Start
+
+![MacBook Pro 16_ - 1](https://github.com/user-attachments/assets/c65383b0-efd7-4df5-9264-60abb1a013c2)
+
