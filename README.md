@@ -28,7 +28,7 @@
 - **Authentication:** JSON Web Tokens (JWT)  
 - **Session Management:** Express-session, Cookie-parser  
 - **Flash Messaging:** Connect-flash  
-- **Email Handling:** Nodemailer (or your configured service)
+- **Email Handling:** Nodemailer 
 
 ---
 
