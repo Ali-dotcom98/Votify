@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "nodemon Operate.js -e js,ejs",
+    "start": "node Operate.js -e js,ejs",
     "go": "npx tailwindcss -i ./public/src/input.css -o ./public/src/output.css --watch"
   },
   "dependencies": {
@@ -24,5 +24,8 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.4.10"
+  },
+  "engines": {
+    "node": "22.12.0"
   }
 }
