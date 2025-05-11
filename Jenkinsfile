@@ -1,34 +1,53 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_COMPOSE_FILE = 'docker-compose.yml'  // Path to your docker-compose.yml file
+        PROJECT_NAME = 'myapp'                      // Project name for docker-compose
+    }
+
     stages {
-        stage('delete php folder if it exists') {
+        stage('Clone Repository') {
             steps {
-               sh '''
-            if [ -d "/var/lib/jenkins/DevOps/" ]; then
-                find "/var/lib/jenkins/DevOps/" -mindepth 1 -delete
-                echo "Contents of /var/lib/jenkins/DevOps/ have been removed."
-            else
-                echo "Directory /var/lib/jenkins/DevOps/ does not exist."
-            fi
-        '''
-
-            }
-        }
-        
-        stage('Fetch code ') {
-            steps {
-                sh 'git clone https://github.com/Ali-dotcom98/Votify.git /var/lib/jenkins/DevOps/php/'
+                // Clone the GitHub repository to fetch the latest code and Docker files
+                git 'https://github.com/Ali-dotcom98/Votify.git'
             }
         }
 
-        stage('Build and Start Docker Compose') {
+        stage('Build Docker Image') {
             steps {
-                dir('/var/lib/jenkins/DevOps/php/') {
-                    sh 'docker compose -p thereactapp up -d'
+                // Build the Docker image using docker-compose
+                script {
+                    sh 'docker-compose -f ${DOCKER_COMPOSE_FILE} build'
+                }
+            }
+        }
+
+        stage('Start Docker Container') {
+            steps {
+                // Run the Docker container using docker-compose
+                script {
+                    sh 'docker-compose -f ${DOCKER_COMPOSE_FILE} up -d'
+                }
+            }
+        }
+
+        stage('Verify Running Container') {
+            steps {
+                script {
+                    // Verify that the Docker container is running
+                    sh 'docker ps'
+                }
+            }
+        }
+
+        stage('Clean Up') {
+            steps {
+                // Stop and remove the container after use (optional, but good practice)
+                script {
+                    sh 'docker-compose -f ${DOCKER_COMPOSE_FILE} down'
                 }
             }
         }
     }
-
 }
