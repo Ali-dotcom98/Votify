@@ -3,39 +3,43 @@ pipeline {
 
     environment {
         DOCKER_COMPOSE_FILE = 'docker-compose.yml'  // Path to your docker-compose.yml file
-        PROJECT_NAME = 'myapp'                      // Project name for docker-compose
+        PROJECT_NAME = 'Votify'                 // Docker Compose project name
     }
 
     stages {
-        stage('Clone Repository') {
+        stage('Delete DevOps Folder if It Exists') {
             steps {
-                
-                git 'https://github.com/Ali-dotcom98/Votify.git'
+                sh '''
+                if [ -d "/var/lib/jenkins/DevOps/" ]; then
+                    find "/var/lib/jenkins/DevOps/" -mindepth 1 -delete
+                    echo "Contents of /var/lib/jenkins/DevOps/ have been removed."
+                else
+                    echo "Directory /var/lib/jenkins/DevOps/ does not exist."
+                fi
+                '''
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Fetch Code') {
             steps {
-                // Build the Docker image using docker-compose
-                script {
-                    sh 'docker-compose -f ${DOCKER_COMPOSE_FILE} build'
+                // Clone the GitHub repository to the DevOps directory
+                sh 'git clone https://github.com/Ali-dotcom98/Votify.git /var/lib/jenkins/DevOps/php/'
+            }
+        }
+
+        stage('Build and Start Docker Compose') {
+            steps {
+                dir('/var/lib/jenkins/DevOps/php/') {
+                    // Build and start the containers using Docker Compose
+                    sh 'docker compose -p ${PROJECT_NAME} up -d'
                 }
             }
         }
 
-        stage('Start Docker Container') {
+        stage('Verify Running Containers') {
             steps {
-                // Run the Docker container using docker-compose
+                // Verify that the containers are running
                 script {
-                    sh 'docker-compose -f ${DOCKER_COMPOSE_FILE} up -d'
-                }
-            }
-        }
-
-        stage('Verify Running Container') {
-            steps {
-                script {
-                    // Verify that the Docker container is running
                     sh 'docker ps'
                 }
             }
@@ -43,9 +47,9 @@ pipeline {
 
         stage('Clean Up') {
             steps {
-                // Stop and remove the container after use (optional, but good practice)
                 script {
-                    sh 'docker-compose -f ${DOCKER_COMPOSE_FILE} down'
+                    // Optionally stop and remove the containers after the process is done
+                    sh 'docker compose -p ${PROJECT_NAME} down'
                 }
             }
         }
