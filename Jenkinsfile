@@ -45,13 +45,6 @@ pipeline {
             }
         }
 
-        stage('Clean Up') {
-            steps {
-                script {
-                    // Optionally stop and remove the containers after the process is done
-                    sh 'docker compose -p ${PROJECT_NAME} down'
-                }
-            }
-        }
+       
     }
 }
