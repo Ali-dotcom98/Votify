@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_COMPOSE_FILE = 'docker-compose.yml'  // Path to your docker-compose.yml file
-        PROJECT_NAME = 'Votify'                 // Docker Compose project name
+        PROJECT_NAME = 'votify'                 // Docker Compose project name
     }
 
     stages {
