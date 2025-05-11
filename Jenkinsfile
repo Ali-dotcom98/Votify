@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                // Clone the GitHub repository to fetch the latest code and Docker files
+                
                 git 'https://github.com/Ali-dotcom98/Votify.git'
             }
         }
