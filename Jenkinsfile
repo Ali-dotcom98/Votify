@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_COMPOSE_FILE = 'docker-compose.yml'  // Path to your docker-compose.yml file
+        DOCKER_COMPOSE_FILE = 'docker compose.yml'  // Path to your docker-compose.yml file
         PROJECT_NAME = 'votify'                 // Docker Compose project name
     }
 
