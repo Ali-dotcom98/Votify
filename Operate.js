@@ -34,7 +34,7 @@ app.use(Express_layout)
 app.use(cookie_parser())
 
 
-
+console.log("Hello World");
 app.set("view engine", "ejs")
 app.set("layout", "./layout/Main");
 
