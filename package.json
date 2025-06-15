@@ -1,7 +1,8 @@
 {
   "scripts": {
     "start": "node Operate.js -e js,ejs",
-    "go": "npx tailwindcss -i ./public/src/input.css -o ./public/src/output.css --watch"
+    "go": "npx tailwindcss -i ./public/src/input.css -o ./public/src/output.css --watch",
+    "test": "mocha tests/**/*.test.js"
   },
   "dependencies": {
     "axios": "^1.7.7",
@@ -23,6 +24,10 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
+    "chai": "^5.2.0",
+    "chromedriver": "^137.0.3",
+    "mocha": "^11.6.0",
+    "selenium-webdriver": "^4.33.0",
     "tailwindcss": "^3.4.10"
   },
   "engines": {

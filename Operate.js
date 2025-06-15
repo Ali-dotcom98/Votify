@@ -41,7 +41,10 @@ app.set("layout", "./layout/Main");
 
 app.get("/LoginAdmin", (req, res) => {
     try {
-        res.render("AdminLogin", { "layout": "./layout/Default" })
+        const message = req.flash("message");
+        console.log(message);
+
+        res.render("AdminLogin", { message, "layout": "./layout/Default" })
     } catch (error) {
         console.log("error", error)
     }
@@ -67,7 +70,7 @@ app.post("/LoginAdmin", (req, res) => {
         }
         else {
             req.flash("message", "Invalid User or Password")
-            res.redirect("/home")
+            res.redirect("/LoginAdmin")
         }
 
     } catch (error) {
@@ -143,7 +146,7 @@ const UserRoutes = require("./routes/User.Route")
 app.use("/home", IsLogin, UserRoutes)
 
 const AdminRoutes = require("./routes/Admin.Route")
-app.use("/Admin", IsLogin, AdminRoutes)
+app.use("/Admin", AdminRoutes)
 
 const VoteRoutes = require("./routes/Voting.Route")
 app.use("/Vote", IsLogin, VoteRoutes)

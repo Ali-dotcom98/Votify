@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body class="font-Popins">
     <div class=" mx-4 mt-4 flex flex-row items-center justify-between mb-5 ">
         <div class="text-2xl text-gray-900 ">
             Over View
         </div>
         <div>
-            <a href="/home" class="font-Popins" >
-            <div class="  font-Popins border border-gray-300 p-2 rounded-xl hover:bg-gray-900 hover:text-white transition ease-in duration-200  flex flex-row gap-2 w-fit
+            <a href="/home" class="font-Popins">
+                <div class="  font-Popins border border-gray-300 p-2 rounded-xl hover:bg-gray-900 hover:text-white transition ease-in duration-200  flex flex-row gap-2 w-fit
             font-semibold uppercase">
-                <svg class="w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-                </svg>
-                <h1 class="">Back</h1>
-            </div>
-        </a>
+                    <svg class="w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                    </svg>
+                    <h1 class="">Back</h1>
+                </div>
+            </a>
         </div>
-        
+
 
     </div>
-    
+
     <div class="relative overflow-x-auto mx-4 mt-4">
         <table class="w-full text-left rtl:text-right text-gray-500 border border-gray-500">
-            
+
             <thead class="text-lg text-white uppercase  bg-gray-900 dark:text-white">
-                <tr >
+                <tr>
                     <th scope="col" class="px-6 py-3">Name</th>
                     <th scope="col" class="px-6 py-3">Age</th>
                     <th scope="col" class="px-6 py-3">Telephone</th>
@@ -38,25 +41,30 @@
                 </tr>
             </thead>
             <tbody class="font-Popins">
-                <tr  class="  bg-white text-black border-b border-gray-500 text-lg">
+                <tr class="  bg-white text-black border-b border-gray-500 text-lg">
                     <td class="px-6 py-4"><%- data.User.Name %></td>
                     <td class="px-6 py-4"><%- data.User.Age %></td>
                     <td class="px-6 py-4"><%- data.User.Telephone %></td>
                     <td class="px-6 py-4"><%- data.User.CNIC %></td>
                     <td class="py-4 px-6">
                         <div class="flex flex-row gap-2 w-fit">
-                            <a href="/home/UserProfile/<%- data.User.id%>">
+                            <a id="View" href="/home/UserProfile/<%- data.User.id%>">
                                 <div class="bg-blue-500 p-2 rounded-md text-white w-fit  border-2 border-blue-600">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                     </svg>
                                 </div>
                             </a>
-                            <a href="/home/UserProfile/Update/<%- data.User.id%>">
+                            <a id="Update" href="/home/UserProfile/Update/<%- data.User.id%>">
                                 <div class="bg-yellow-500 p-2 rounded-md text-black w-fit  border-2 border-yellow-600">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                                     </svg>
                                 </div>
                             </a>
@@ -66,6 +74,7 @@
             </tbody>
         </table>
     </div>
-    
+
 </body>
+
 </html>

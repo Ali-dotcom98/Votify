@@ -17,15 +17,16 @@ const GenerateToken = (user) => {
     return jwt.sign({ username: user }, Secret, { expiresIn: '1h' });
 };
 
-const Validation =(Token)=>{
-    return jwt.verify(Token,Secret);
+const Validation = (Token) => {
+    return jwt.verify(Token, Secret);
 }
 
 const IsLogin = (req, res, next) => {
     try {
         const token = req.cookies?.uid;
+        // const token2 = req.cookies?.AdminUid;
 
-        if (token == null) {
+        if (!token && !token2) {
             console.log("No Permission (token = Null)");
             return res.redirect("/Site/Login");
         }
@@ -44,4 +45,4 @@ const IsLogin = (req, res, next) => {
 };
 
 
-module.exports = {GenerateToken, Validation ,IsLogin}
+module.exports = { GenerateToken, Validation, IsLogin }

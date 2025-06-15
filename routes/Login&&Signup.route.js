@@ -8,14 +8,18 @@ const { check, validationResult } = require("express-validator");
 const { CheckRecoveryToken, RecoveryTokenGenerate, ValidatePasswordRecovery } = require("../utility/ForgetToken")
 const { transporter, SendMail } = require("../utility/Gmail");
 const path = require('path');
+const { log } = require('console');
 Route.get("/Login", (req, res) => {
     const message = req.flash("message");
     const success = req.flash("success");
+    console.log(message, "Success message");
+
+
 
     res.render("login", {
         layout: "./layout/Default",
         message,
-        success,
+        success: success,
         validation: [],
         Oldvalue: { Email: "", Password: "" }
     });
@@ -42,7 +46,12 @@ Route.post("/Login",
                 const message = error.array()[0].msg;
                 console.log(errorList)
                 req.flash("message", message[0].msg);
-                res.render("login", { "layout": "./layout/Default", message, validation: error.array(), Oldvalue: { Email: data.Email, Password: data.Password } })
+                res.render("login", {
+                    layout: "./layout/Default",
+                    message,
+                    validation: [{ path: "Email" }, { path: "Password" }],
+                    Oldvalue: { Email: data.Email, Password: data.Password }
+                });
             }
             console.log("User exist", FindUser)
             if (FindUser != null) {
@@ -55,6 +64,8 @@ Route.post("/Login",
                         LoginInfo: FindUser.User
                     };
 
+                    console.log("Payload in login ", payload);
+
                     const token = GenerateToken(payload);
                     const IsValid = Validation(token);
                     res.cookie("uid", token)
@@ -63,8 +74,13 @@ Route.post("/Login",
                 else {
                     console.log("Incorrect UserName or Password")
                     const message = "Incorrect UserName or Password";
-                    res.render("login", { "layout": "./layout/Default", message, validation: [{ path: "Email" }, { path: "Password" }], Oldvalue: { Email: data.Email, Password: data.Password } })
+                    res.render("login", {
+                        layout: "./layout/Default",
+                        message,
 
+                        validation: [{ path: "Email" }, { path: "Password" }],
+                        Oldvalue: { Email: data.Email, Password: data.Password }
+                    });
                 }
             }
             else {
@@ -107,6 +123,8 @@ Route.post("/Signup",
     , async (req, res) => {
         try {
             const data = req.body;
+            console.log(data, "data");
+
             const error = validationResult(req);
             if (!error.isEmpty()) {
                 const message = error.array()[0].msg;
@@ -118,93 +136,30 @@ Route.post("/Signup",
                         validation: error.array()
                     });
             }
-            const IsExist = await Login.findOne({ Email: data.Email })
+            const IsExist = await Login.findOne({ Email: data.Username })
             if (!IsExist) {
-                let otp = otpGenerator.generate(4, {
-                    upperCaseAlphabets: false,
-                    lowerCaseAlphabets: false,
-                    specialChars: false,
-                });
-                console.log(otp)
+
                 const salt = await bcrypt.genSalt(10);
                 const NewPassword = await bcrypt.hash(data.Password, salt);
-                const Payload =
-                {
-                    Email: data.Username,
-                    Password: NewPassword,
-                    OTP: otp
-                }
-                console.log(JSON.stringify(Payload))
-                res.cookie("OTP", Payload)
-                var mailOptions = {
-                    from: {
-                        name: "Ali",
-                        address: "alishah19477.as@gmail.com"
-                    },
-                    to: data.Username,
-                    subject: 'Your OTP Code for Account Verification',
-                    text: `Hello Ali,\n\nYour OTP code is: ${otp}\n\nPlease enter this code to verify your account. If you did not request this, please ignore this message.\n\nBest regards,\nYour Team\n\nThis is an automated message. Please do not reply directly to this email.`,
-                    html: `
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <meta charset="UTF-8">
-                    <title>Email Template</title>
-                    <style>
-                        body {
-                            font-family: Arial, sans-serif;
-                            color: #333;
-                            margin: 0;
-                            padding: 20px;
-                            background-color: #f4f4f4;
-                        }
-                        .container {
-                            max-width: 600px;
-                            margin: auto;
-                            background: #fff;
-                            padding: 20px;
-                            border-radius: 8px;
-                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                        }
-                        h1 {
-                            color: #333;
-                        }
-                        p {
-                            line-height: 1.6;
-                        }
-                        .otp-box {
-                            font-size: 1.5em;
-                            font-weight: bold;
-                            background-color: #f0f0f0;
-                            padding: 10px;
-                            border-radius: 8px;
-                            display: inline-block;
-                            margin: 20px 0;
-                        }
-                        .footer {
-                            margin-top: 20px;
-                            font-size: 0.8em;
-                            color: #777;
-                        }
-                    </style>
-                </head>
-                <body>
-                    <div class="container">
-                        <h1>Hello Ali,</h1>
-                        <p>Please use the following OTP code to verify your account:</p>
-                        <div class="otp-box">${otp}</div>
-                        <p>If you did not request this, please ignore this message.</p>
-                        <div class="footer">
-                            <p>This is an automated message. Please do not reply directly to this email.</p>
-                        </div>
-                    </div>
-                </body>
-                </html>
-                `
-                };
-                SendMail(transporter, mailOptions)
 
-                res.redirect("/OTP")
+                const AddUser = new Login({
+                    Email: data.Username,
+                    Password: NewPassword
+                });
+                const Isave = await AddUser.save();
+                if (Isave) {
+                    const payload = {
+                        id: Isave.id,
+                        Email: Isave.Email,
+                        LoginInfo: Isave.User
+                    };
+
+                    const token = GenerateToken(payload);
+                    const IsValid = Validation(token);
+                    res.cookie("uid", token)
+                    res.redirect("/home")
+                }
+
             }
             else {
                 const message = "Email Should be Unique";
@@ -216,9 +171,6 @@ Route.post("/Signup",
                         validation: [{ path: "Username" }],
                     });
             }
-
-
-
         } catch (error) {
             console.log("error", error);
         }
