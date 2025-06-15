@@ -45,12 +45,12 @@
                         <form method="post" action="/Site/Signup" novalidate>
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="Name">
-                                    Name
+                                    Email
                                 </label>
                                 <div class="relative flex flex-col items-center justify-start">
                                     <input
                                         class="<%- validation.find(e => e.path === 'Username') ? 'Invalid' : 'Valid' %> w-full px-3 py-2 text-sm text-gray-700 border-b focus:outline-none focus:ring-1 rounded-sm focus:ring-blue-600 focus:border-transparent"
-                                        id="Username" type="email" placeholder="Enter your name" name="Username"
+                                        id="Username" type="email" placeholder="Enter your Email" name="Username"
                                         value="<%- Oldvalue.Email %>">
 
                                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
