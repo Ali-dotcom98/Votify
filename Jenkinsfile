@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_COMPOSE_FILE = 'docker compose.yml'  // Path to your docker-compose.yml file
-        PROJECT_NAME = 'votify'                 // Docker Compose project name
+        PROJECT_NAME = 'votify'                     // Docker Compose project name
     }
 
     stages {
@@ -22,7 +22,6 @@ pipeline {
 
         stage('Fetch Code') {
             steps {
-                // Clone the GitHub repository to the DevOps directory
                 sh 'git clone https://github.com/Ali-dotcom98/Votify.git /var/lib/jenkins/DevOps/php/'
             }
         }
@@ -30,7 +29,6 @@ pipeline {
         stage('Build and Start Docker Compose') {
             steps {
                 dir('/var/lib/jenkins/DevOps/php/') {
-                    // Build and start the containers using Docker Compose
                     sh 'docker compose -p ${PROJECT_NAME} up -d'
                 }
             }
@@ -38,13 +36,30 @@ pipeline {
 
         stage('Verify Running Containers') {
             steps {
-                // Verify that the containers are running
-                script {
-                    sh 'docker ps'
-                }
+                sh 'docker ps'
             }
         }
 
-       
+        stage('Run Tests') {
+            steps {
+                dir('/var/lib/jenkins/DevOps/') {
+                    sh '''
+                        echo "🔁 Cloning Testing Repo..."
+                        git clone https://github.com/Ali-dotcom98/Testing.git
+
+                        cd Testing
+
+                        echo "📦 Installing Node dependencies..."
+                        npm install
+
+                        echo "🧪 Running Automated Tests..."
+                        node RunTest.js > test-report.txt
+
+                        echo "✅ Tests completed. Showing summary:"
+                        cat test-report.txt
+                    '''
+                }
+            }
+        }
     }
 }
