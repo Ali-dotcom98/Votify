@@ -70,22 +70,22 @@ pipeline {
                 ).trim()
 
                 emailext(
-                        to: "${email}",
-                        subject: "🧪 Test Report: Jenkins Job #${env.BUILD_NUMBER}",
-                        body: """
-                            Hello,
-                    
-                            The test run has completed for Jenkins job: ${env.JOB_NAME} #${env.BUILD_NUMBER}.
-                    
-                            Please find the test results attached.
-                    
-                            Regards,
-                            Jenkins Team
-                        """,
-                        attachmentsPattern: "**/test-report.txt", // ✅ Corrected relative glob pattern
-                        mimeType: 'text/plain'
-                    )
+                to: "${email}",
+                subject: "🧪 Test Report: Jenkins Job #${env.BUILD_NUMBER}",
+                body: """
+                    Hello,
 
+                    The test run has completed for Jenkins job: ${env.JOB_NAME} #${env.BUILD_NUMBER}.
+
+                    📝 Test Report:
+
+                    ${reportContent}
+
+                    Regards,
+                    Jenkins Team
+                """,
+                mimeType: 'text/plain'
+            )
             }
         }
     }
