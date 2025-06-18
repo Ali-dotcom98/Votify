@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     environment {
         DOCKER_COMPOSE_FILE = 'docker compose.yml'
         PROJECT_NAME = 'votify'
