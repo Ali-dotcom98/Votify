@@ -69,23 +69,25 @@ pipeline {
                     returnStdout: true
                 ).trim()
 
+                def reportContent = readFile('/var/lib/jenkins/DevOps/Testing/test-report.txt')
+
                 emailext(
-                to: "${email}",
-                subject: "🧪 Test Report: Jenkins Job #${env.BUILD_NUMBER}",
-                body: """
-                    Hello,
+                    to: "${email}",
+                    subject: "🧪 Test Report: Jenkins Job #${env.BUILD_NUMBER}",
+                    body: """
+                        Hello,
 
-                    The test run has completed for Jenkins job: ${env.JOB_NAME} #${env.BUILD_NUMBER}.
+                        The test run has completed for Jenkins job: ${env.JOB_NAME} #${env.BUILD_NUMBER}.
 
-                    📝 Test Report:
+                        📝 Test Report:
 
-                    ${reportContent}
+                        ${reportContent}
 
-                    Regards,
-                    Jenkins Team
-                """,
-                mimeType: 'text/plain'
-            )
+                        Regards,
+                        Jenkins Team
+                    """,
+                    mimeType: 'text/plain'
+                )
             }
         }
     }
