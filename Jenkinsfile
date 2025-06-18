@@ -5,7 +5,6 @@ pipeline {
         DOCKER_COMPOSE_FILE = 'docker compose.yml'
         PROJECT_NAME = 'votify'
     }
-
     stages {
         stage('Delete DevOps Folder if It Exists') {
             steps {
