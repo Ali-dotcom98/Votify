@@ -2,20 +2,20 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_COMPOSE_FILE = 'docker compose.yml'  // Path to your docker-compose.yml file
-        PROJECT_NAME = 'votify'                     // Docker Compose project name
+        DOCKER_COMPOSE_FILE = 'docker compose.yml'
+        PROJECT_NAME = 'votify'
     }
 
     stages {
         stage('Delete DevOps Folder if It Exists') {
             steps {
                 sh '''
-                if [ -d "/var/lib/jenkins/DevOps/" ]; then
-                    find "/var/lib/jenkins/DevOps/" -mindepth 1 -delete
-                    echo "Contents of /var/lib/jenkins/DevOps/ have been removed."
-                else
-                    echo "Directory /var/lib/jenkins/DevOps/ does not exist."
-                fi
+                    if [ -d "/var/lib/jenkins/DevOps/" ]; then
+                        find "/var/lib/jenkins/DevOps/" -mindepth 1 -delete
+                        echo "Contents of /var/lib/jenkins/DevOps/ have been removed."
+                    else
+                        echo "Directory /var/lib/jenkins/DevOps/ does not exist."
+                    fi
                 '''
             }
         }
@@ -59,6 +59,34 @@ pipeline {
                         cat test-report.txt
                     '''
                 }
+            }
+        }
+    }
+
+    post {
+        always {
+            script {
+                def email = sh(
+                    script: "cd /var/lib/jenkins/DevOps/php && git show -s --format='%ae' HEAD",
+                    returnStdout: true
+                ).trim()
+
+                emailext(
+                    to: "${email}",
+                    subject: "🧪 Test Report: Jenkins Job #${env.BUILD_NUMBER}",
+                    body: """
+                        Hello,
+
+                        The test run has completed for Jenkins job: ${env.JOB_NAME} #${env.BUILD_NUMBER}.
+
+                        Please find the test results attached.
+
+                        Regards,
+                        Jenkins Team
+                    """,
+                    attachmentsPattern: "/var/lib/jenkins/DevOps/Testing/test-report.txt",
+                    mimeType: 'text/plain'
+                )
             }
         }
     }
