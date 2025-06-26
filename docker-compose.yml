@@ -12,3 +12,4 @@ networks:
   mynetwork:
     driver: bridge
 
+
