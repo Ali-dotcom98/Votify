@@ -39,26 +39,32 @@ pipeline {
         }
 
         stage('Run Tests') {
-            steps {
-                dir('/var/lib/jenkins/DevOps/') {
-                    sh '''
-                        echo "🔁 Cloning Testing Repo..."
-                        git clone https://github.com/Ali-dotcom98/Testing.git
+    steps {
+        dir('/var/lib/jenkins/DevOps/') {
+            sh '''
+                set -e  # Stop pipeline if any command fails
 
-                        cd Testing
+                echo "🧹 Removing old Testing folder if it exists..."
+                rm -rf Testing
 
-                        echo "📦 Installing Node dependencies..."
-                        npm install
+                echo "🔁 Cloning Testing Repo..."
+                git clone https://github.com/Ali-dotcom98/Testing.git
 
-                        echo "🧪 Running Automated Tests..."
-                        node RunTest.js > test-report.txt
+                cd Testing
 
-                        echo "✅ Tests completed. Showing summary:"
-                        cat test-report.txt
-                    '''
-                }
-            }
+                echo "📦 Installing Node dependencies..."
+                npm install
+
+                echo "🧪 Running Automated Tests..."
+                node RunTest.js > test-report.txt
+
+                echo "✅ Tests completed. Showing summary:"
+                cat test-report.txt
+            '''
         }
+    }
+}
+
     }
 
     post {
