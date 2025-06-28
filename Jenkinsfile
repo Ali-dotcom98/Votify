@@ -5,6 +5,7 @@ pipeline {
         PROJECT_NAME = 'votify'
     }
     stages {
+        
         stage('Delete DevOps Folder if It Exists') {
             steps {
                 sh '''
