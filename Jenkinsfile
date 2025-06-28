@@ -1,100 +1,34 @@
-pipeline {
-    agent any
-    environment {
-        DOCKER_COMPOSE_FILE = 'docker compose.yml'
-        PROJECT_NAME = 'votify'
-    }
-    stages {
-        stage('Delete DevOps Folder if It Exists') {
-            steps {
-                sh '''
-                    if [ -d "/var/lib/jenkins/DevOps/" ]; then
-                        find "/var/lib/jenkins/DevOps/" -mindepth 1 -delete
-                        echo "Contents of /var/lib/jenkins/DevOps/ have been removed."
-                    else
-                        echo "Directory /var/lib/jenkins/DevOps/ does not exist."
-                    fi
-                '''
-            }
-        }
+const fs = require('fs');
+const { execSync } = require('child_process');
 
-        stage('Fetch Code') {
-            steps {
-                sh 'git clone https://github.com/Ali-dotcom98/Votify.git /var/lib/jenkins/DevOps/php/'
-            }
-        }
+const testDir = './tests';
+const files = fs.readdirSync(testDir).filter(f => f.endsWith('.js'));
 
-        stage('Build and Start Docker Compose') {
-            steps {
-                dir('/var/lib/jenkins/DevOps/php/') {
-                    sh 'docker compose -p ${PROJECT_NAME} up -d'
-                }
-            }
-        }
+let passed = 0;
+let failed = 0;
+let details = '';
 
-        stage('Verify Running Containers') {
-            steps {
-                sh 'docker ps'
-            }
-        }
+for (const file of files) {
+    const filePath = `${testDir}/${file}`;
+    details += `\n🧪 Running: ${file}\n`;
 
-        stage('Run Tests') {
-    steps {
-        dir('/var/lib/jenkins/DevOps/') {
-            sh '''
-                set -e  # Stop pipeline if any command fails
-
-                echo "🧹 Removing old Testing folder if it exists..."
-                rm -rf Testing
-
-                echo "🔁 Cloning Testing Repo..."
-                git clone https://github.com/Ali-dotcom98/Testing.git
-
-                cd Testing
-
-                echo "📦 Installing Node dependencies..."
-                npm install
-
-                echo "🧪 Running Automated Tests..."
-                node RunTest.js > test-report.txt
-
-                echo "✅ Tests completed. Showing summary:"
-                cat test-report.txt
-            '''
-        }
+    try {
+        execSync(`node ${filePath}`, { stdio: 'inherit' });
+        details += `✅ Passed: ${file}\n`;
+        passed++;
+    } catch (err) {
+        details += `❌ Failed: ${file}\n`;
+        failed++;
     }
 }
 
-    }
+const summary = `📋 Test Report Summary
+==========================
+✅ Total Passed: ${passed}
+❌ Total Failed: ${failed}
+==========================\n`;
 
-    post {
-        always {
-            script {
-                def email = sh(
-                    script: "cd /var/lib/jenkins/DevOps/php && git show -s --format='%ae' HEAD",
-                    returnStdout: true
-                ).trim()
+const finalReport = summary + details;
 
-                def reportContent = readFile('/var/lib/jenkins/DevOps/Testing/test-report.txt')
-
-                emailext(
-                    to: "${email}",
-                    subject: "🧪 Test Report: Jenkins Job #${env.BUILD_NUMBER}",
-                    body: """
-                        Hello,
-
-                        The test run has completed for Jenkins job: ${env.JOB_NAME} #${env.BUILD_NUMBER}.
-
-                        📝 Test Report:
-
-                        ${reportContent}
-
-                        Regards,
-                        Jenkins Team
-                    """,
-                    mimeType: 'text/plain'
-                )
-            }
-        }
-    }
-}
+fs.writeFileSync('test-report.txt', finalReport);
+console.log(finalReport);
