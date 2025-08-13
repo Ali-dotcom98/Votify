@@ -39,7 +39,7 @@
 git clone https://github.com/Ali-dotcom98/Votify.git
 
 # Navigate into the project folder
-cd votify
+cd Votify
 
 # Install dependencies
 npm install
